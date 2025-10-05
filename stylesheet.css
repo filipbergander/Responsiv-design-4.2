@@ -68,11 +68,11 @@ En border radius längst ner till vänster.  */
     display: grid;
     grid-area: courses;
     color: white;
-    font-size: 18px;
+    font-size: 1rem;
     background: #046ffae0;
     width: 100%;
     max-width: 1000px;
-    padding: 30px;
+    padding: 2rem;
     border-radius: 0 0 0 5em;
     justify-self: end;
     align-self: start;
@@ -90,12 +90,12 @@ En border radius längst ner till vänster.  */
 
 /* Bildernas utformning */
 .images img {
+    width: 100%;
+    height: auto;
     max-width: 350px;
-    max-height: 350px;
     border-radius: 40px;
     object-fit: cover;
-    width: 90%;
-    height: 90%;
+
 }
 
 /* Placering, av avsnittet med fler kurser, enligt gridlayout och border radius. */
@@ -191,10 +191,10 @@ footer {
     /* Bildernas utformning. */
     .images img {
         width: 100%;
-        height: 250px;
+        max-width: 300px;
+        height: auto;
+        max-height: 200px;
         border-radius: 30px;
-        margin: 0;
-        object-fit: cover;
     }
 
     /* Övriga kurser */
@@ -282,6 +282,7 @@ footer {
     .images img {
         width: 100%;
         max-width: 600px;
+        margin: 1%;
     }
 
     /* Kursavsnittet, med bakgrundsfärg mörk blått längst upp till höger, kan man inte se när fönstret < 600px. */
