@@ -1,0 +1,296 @@
+/* Inledande hur hela designen ska förhålla sig. Max bredd på dokumentet 1600px. */
+* {
+    box-sizing: border-box;
+    max-width: 1600px;
+}
+
+/* Gridlayout på dokumentet för respektive element. */
+.grid-container {
+    display: grid;
+    grid-template-areas:
+        'header header courses courses'
+        'boxstudy boxstudy courses courses'
+        'images images images images'
+        'morecourses morecourses morecourses morecourses'
+        'footer footer footer footer';
+    grid-gap: 1.5rem;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: auto auto auto auto auto;
+}
+
+
+/* Font-family för hela body. */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Headerns område, placerad längst upp till vänster och täcker två av fyra kolumner längst upp enligt gridlayouten. */
+header {
+    grid-area: header;
+    width: 6rem;
+    height: 6rem;
+    padding: 0.5em;
+    margin-bottom: 1rem;
+}
+
+/* Logo till headern */
+header .logo {
+    width: 100%;
+    height: 100%;
+}
+
+/* Placering av studera mera avsnittet. */
+.boxstudy {
+    grid-area: boxstudy;
+    width: 80%;
+}
+
+/* Huvudrubrik */
+h1 {
+    margin-top: 3rem;
+    margin-bottom: 0.1rem;
+}
+
+/* Underrubrik två med färg. */
+h2 {
+    color: rgb(20, 142, 223);
+}
+
+/* Underrubrik tre med färg och marginal under. */
+h3 {
+    color: #ffffff;
+    margin-bottom: 1em;
+}
+
+/* Kursavsnitt, utformat enligt gridlayouten med grid-area. 
+En border radius längst ner till vänster.  */
+.courses {
+    display: grid;
+    grid-area: courses;
+    color: white;
+    font-size: 18px;
+    background: #046ffae0;
+    width: 100%;
+    max-width: 1000px;
+    padding: 30px;
+    border-radius: 0 0 0 5em;
+    justify-self: end;
+    align-self: start;
+}
+
+/* Bilderna i gridlayout och deras placering. */
+.images {
+    display: grid;
+    grid-area: images;
+    grid-template-columns: repeat(4, 1fr);
+    /* Samma som (1fr, 1fr, 1fr, 1fr)*/
+    padding: 0 4px;
+    gap: 5em;
+}
+
+/* Bildernas utformning */
+.images img {
+    max-width: 350px;
+    max-height: 350px;
+    border-radius: 40px;
+    object-fit: cover;
+    width: 90%;
+    height: 90%;
+}
+
+/* Placering, av avsnittet med fler kurser, enligt gridlayout och border radius. */
+.morecourses {
+    display: grid;
+    grid-area: morecourses;
+    background-color: #b9d1f1a8;
+    line-height: 1.5;
+    padding: 1.5em;
+    border-radius: 0 30px 30px 0;
+    width: 90%;
+    max-width: 800px;
+}
+
+/* Footer placerad längst ner enligt gridlayout och med lite padding & bakgrundsfärg. */
+footer {
+    display: grid;
+    grid-area: footer;
+    color: white;
+    background-color: #2f80ED;
+    padding: 0.7em;
+}
+
+/* Detta är regler för hur dokumentet ska reagera när man går från 1600px till mellan 1024px - 601px. */
+@media screen and (max-width: 1024px) and (min-width: 601px) {
+    .grid-container {
+        display: grid;
+        grid-template-areas:
+            /* Annan utformning på layouten, fortfarande grid. */
+            'header courses'
+            'boxstudy courses'
+            'images images'
+            /* Bilderna blir två och två på två rader */
+            'morecourses'
+            'footer footer';
+        grid-gap: 1rem;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: repeat(5, auto);
+    }
+
+    /* Placering av header */
+    header {
+        display: grid;
+        grid-area: header;
+        justify-self: left;
+        margin-bottom: 1rem;
+        width: 5rem;
+        height: 5rem;
+    }
+
+    /* Logo till header */
+    header.logo {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Placering av kursavsnittet enligt gridlayout. */
+    .courses {
+        display: grid;
+        grid-area: courses;
+        color: white;
+        font-size: 16px;
+        background: #046ffae0;
+        width: 100%;
+        max-width: 400px;
+        padding: 2em;
+        border-radius: 0 0 0 5em;
+        justify-self: end;
+        align-self: start;
+
+    }
+
+    /* Info studera mera, placerat enligt grid. */
+    .boxstudy {
+        display: grid;
+        grid-area: boxstudy;
+        font-size: 14px;
+        width: 90%;
+        max-width: 300px;
+        padding: 1em;
+        border: none;
+    }
+
+    /* Bilderna på två rader istället för en rad */
+    .images {
+        display: grid;
+        grid-area: images;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        padding: 0.5rem;
+    }
+
+    /* Bildernas utformning. */
+    .images img {
+        width: 100%;
+        height: 250px;
+        border-radius: 30px;
+        margin: 0;
+        object-fit: cover;
+    }
+
+    /* Övriga kurser */
+    .morecourses {
+        display: grid;
+        grid-area: morecourses;
+        font-size: 14px;
+        width: 80%;
+        max-width: 500px;
+        justify-self: left;
+
+    }
+
+    /* Footer med grid */
+    footer {
+        display: grid;
+        grid-area: footer;
+        margin: 0;
+    }
+}
+
+/* Hur dokumentet ska reagera när man krymper till under 600px. */
+@media screen and (max-width: 600px) {
+    .grid-container {
+        display: grid;
+        grid-template-areas:
+            /* Allt i en kolumn */
+            'header'
+            'boxstudy'
+            'morecourses'
+            'images'
+            'footer';
+        grid-gap: 1rem;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(5, auto);
+    }
+
+    /* Header med grid */
+    header {
+        display: grid;
+        grid-area: header;
+        justify-self: left;
+        margin-bottom: 0;
+        width: 4rem;
+        height: 4rem;
+    }
+
+    /* Logo inom header */
+    header.logo {
+        width: 100%;
+        height: 100%;
+    }
+
+    /* Font-size, på studera mera avsnittet, förminskat till 14px.  */
+    .boxstudy {
+        display: grid;
+        grid-area: boxstudy;
+        font-size: 14px;
+        width: 80%;
+        justify-self: center;
+        padding: 1em;
+        border: none;
+    }
+
+    /* Kursavsnittet, förminskat font-size till 14px. */
+    .morecourses {
+        display: grid;
+        grid-area: morecourses;
+        font-size: 14px;
+        width: 80%;
+        justify-self: left;
+
+    }
+
+    /* Bildsektionen enligt grid och i en kolumn istället för en rad. */
+    .images {
+        display: grid;
+        grid-area: images;
+        grid-template-columns: 1fr;
+        max-width: 100%;
+        gap: 0px;
+    }
+
+    /* Respektive bild */
+    .images img {
+        width: 100%;
+        max-width: 600px;
+    }
+
+    /* Kursavsnittet, med bakgrundsfärg mörk blått längst upp till höger, kan man inte se när fönstret < 600px. */
+    .courses {
+        display: none;
+    }
+
+    /* Footer */
+    footer {
+        grid-area: footer;
+    }
+}
